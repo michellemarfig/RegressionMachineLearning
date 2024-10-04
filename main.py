@@ -1,6 +1,5 @@
 # Linear Reg5ression MAchine Learning
 # Michelle Martinez-Figueroa
-# WGU C964
 # September 9, 2024
 
 import pandas as pd
