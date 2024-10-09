@@ -1,4 +1,4 @@
-# Linear Reg5ression MAchine Learning
+# Linear Regression Machine Learning
 # Michelle Martinez-Figueroa
 # September 9, 2024
 
