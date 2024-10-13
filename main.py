@@ -11,26 +11,27 @@ print('Please wait while data is read ...')
 print('')
 print('')
 
-
+# turn CSV data into data frame 
 file = 'linear_regression_data3.csv'
 names = ['Month', 'Year', 'TotalNoOfCalls', 'Average Handle Time in Seconds', 'Attendance Percentage', 'Average Quality Percentage', 'Percentage of Calls Answered Within 3 minutes', 'Profit/Loss']
 df = pd.read_csv(file)
 
+# Build Linear regression model
 mylog_model = linear_model.LogisticRegression(max_iter=1000)
-mysvm_model = svm.SVC(max_iter=1000)
+#mysvm_model = svm.SVC(max_iter=1000)
 y = df.values[:,7]
 x = df.values[:, 0:7]
-
 x_train, x_test, y_train, y_test = model_selection.train_test_split(x, y, test_size=.3)
-
 mylog_model.fit(x_train, y_train)
-
 y_pred_log = mylog_model.predict(x_test)
+
+# Get mean squared error
 print('Accuracy Score:')
 print(metrics.mean_squared_error(y_test, y_pred_log))
 
 estimate = [[]]
 
+# Function to get prediction
 def getPrediction():
     print('Enter the month:')
     month = float(input())
@@ -50,8 +51,9 @@ def getPrediction():
     estimate = [[month, year, totalCalls, handleTime, attendance, quality, SLA]]
 
     print("The estimated profit/loss for today is: $", mylog_model.predict(estimate))
-
     mainMenu()
+
+# function to navigate menu
 def mainMenu():
     print('Enter 1 to get a profit/loss prediction. Enter 2 to show plots. Or enter anything else to exit.')
     response = input()
@@ -63,6 +65,7 @@ def mainMenu():
         print('Exiting...')
         exit()
 
+# function to show graphs
 def showPlots():
     print('Enter A for a line graph. Enter B for a boxplot. Enter C for a histogram. Enter D for the main menu. Or enter anything else to exit.')
     response = input()
